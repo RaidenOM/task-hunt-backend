@@ -8,6 +8,7 @@ const app = express();
 const Todo = require("./models/todo");
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/skite";
 const PORT = process.env.PORT || 3000;
+const cors = require("cors");
 
 mongoose
   .connect(dbUrl)
@@ -19,6 +20,7 @@ mongoose
   });
 
 app.use(express.json());
+app.use(cors());
 
 //TODO Routes
 app.get("/api/todos", async (req, res) => {
