@@ -55,6 +55,4 @@ app.put("/api/todos/:id", async (req, res) => {
   res.json(todo);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on PORT: ${PORT}`);
-});
+module.exports = app;
