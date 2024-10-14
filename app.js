@@ -19,8 +19,14 @@ mongoose
     console.log("Error connecting to Database");
   });
 
+const corsOptions = {
+  origin: "*", // Allow requests from any origin (not recommended for production)
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+};
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 //TODO Routes
 app.get("/api/todos", async (req, res) => {
