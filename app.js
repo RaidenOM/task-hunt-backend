@@ -1,10 +1,16 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const Todo = require("./models/todo");
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/skite";
+const PORT = process.env.PORT || 3000;
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/task_hunt")
+  .connect(dbUrl)
   .then(() => {
     console.log("Connected to Database");
   })
@@ -49,6 +55,6 @@ app.put("/api/todos/:id", async (req, res) => {
   res.json(todo);
 });
 
-app.listen(3000, () => {
-  console.log("Server running on PORT: 3000");
+app.listen(PORT, () => {
+  console.log(`Server running on PORT: ${PORT}`);
 });
